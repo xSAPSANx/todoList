@@ -1,0 +1,114 @@
+@font-face {
+	font-family: 'Roboto';
+	src: url('/src/app/assets/Roboto/Roboto-Medium.ttf') format('truetype');
+	font-style: normal;
+}
+
+$background-color: #dde0ab;
+$card-background: #f9f3e5;
+$shadow-color: rgba(0, 0, 0, 0.25);
+$notes-background: #d8f7ff;
+
+.todoList {
+	font-family: 'Roboto', sans-serif;
+	background-color: $background-color;
+	padding: 0px 20px 20px 20px;
+	min-height: 100vh;
+
+	.titleContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 20px;
+
+		.title {
+			font-size: 55px;
+			font-weight: 400;
+			margin-bottom: 20px;
+		}
+
+		&::before,
+		&::after {
+			content: '';
+			position: relative;
+			flex: 1;
+			height: 5px;
+			background-color: #000000;
+			margin: 0 15px;
+			position: relative;
+			top: 6px;
+		}
+	}
+}
+
+.schedule {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+	justify-items: center;
+}
+
+.addCard {
+	position: relative;
+
+	.addButton {
+		position: absolute;
+		scale: 2;
+		top: 40%;
+		left: 40%;
+		&:hover {
+			color: #000;
+		}
+	}
+}
+
+.dayCard {
+	display: flex;
+	flex-direction: column;
+	background-color: $card-background;
+	box-shadow: 12px 12px 0 $shadow-color;
+	border-radius: 24px;
+	border: 5px solid;
+	padding: 10px 15px 15px 15px;
+	width: 250px;
+	min-height: 300px;
+	text-align: left;
+
+	.dayTitle {
+		font-size: 30px;
+		font-weight: bold;
+		margin-bottom: 10px;
+		margin-top: 0;
+		text-align: left;
+		border-bottom: 3px solid;
+	}
+
+	.dataCreate {
+		text-align: center;
+		font-size: 12px;
+		color: gray;
+	}
+
+	.dataEnd {
+		font-size: 14px;
+		margin: 15px 0px;
+	}
+
+	.taskDescription {
+		font-size: 16px;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.editButton {
+		margin-top: 10px;
+		color: #5b5b5b;
+
+		&:hover {
+			color: #000;
+		}
+	}
+	.footerCard {
+		margin-top: auto;
+	}
+}

@@ -1,8 +1,13 @@
+@font-face {
+	font-family: 'Roboto';
+	src: url('/src/app/assets/Roboto/Roboto-Medium.ttf') format('truetype');
+	font-style: normal;
+}
+
 .root {
-	background-color: #fff;
-	padding: 10px 0;
-	border-bottom: 1px solid #e0e0e0;
-	margin-bottom: 30px;
+	font-family: 'Roboto', sans-serif;
+	padding-top: 10px;
+	padding-left: 10px;
 }
 
 .inner {
@@ -11,16 +16,18 @@
 }
 
 .logo {
-	background-color: black;
-	color: #fff;
+	background-color: #f9f3e5;
+	color: #000000;
 	font-weight: 700;
 	line-height: 35px;
 	text-transform: uppercase;
 	letter-spacing: 0.15px;
+	border: 3px solid;
 	border-radius: 5px;
 	padding: 0 10px;
 	text-decoration: none;
-	margin-right: 50px;
+	margin-top: 30px;
+	margin-right: 35px;
 
 	&:hover {
 		background-color: #4361ee;

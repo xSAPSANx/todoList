@@ -1,0 +1,9 @@
+.root {
+	background-color: #97cba9;
+	margin: 0;
+	:global {
+		.previous {
+			background-color: red;
+		}
+	}
+}

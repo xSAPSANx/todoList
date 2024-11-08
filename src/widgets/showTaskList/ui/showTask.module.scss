@@ -1,0 +1,50 @@
+@font-face {
+	font-family: 'Roboto';
+	src: url('/src/app/assets/Roboto/Roboto-Medium.ttf') format('truetype');
+	font-style: normal;
+}
+
+$background-color: #97cba9;
+$card-background: #f9f3e5;
+$shadow-color: rgba(0, 0, 0, 0.25);
+$notes-background: #d8f7ff;
+
+.todoList {
+	font-family: 'Roboto', sans-serif;
+	background-color: $background-color;
+	padding: 0px 20px 20px 20px;
+
+	min-height: 100vh;
+
+	.titleContainer {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 20px;
+
+		.title {
+			font-size: 55px;
+			font-weight: 400;
+			margin-bottom: 20px;
+		}
+
+		&::before,
+		&::after {
+			content: '';
+			position: relative;
+			flex: 1;
+			height: 5px;
+			background-color: #000000;
+			margin: 0 15px;
+			position: relative;
+			top: 6px;
+		}
+	}
+}
+
+.schedule {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 20px;
+	justify-items: center;
+}

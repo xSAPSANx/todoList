@@ -1,5 +1,7 @@
+import { TodoCreate } from '../../widgets/createTask'
+
 const TaskManager = () => {
-	return <div>hi</div>
+	return <TodoCreate />
 }
 
 export default TaskManager
