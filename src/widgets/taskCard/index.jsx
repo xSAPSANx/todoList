@@ -6,14 +6,13 @@ import CheckIcon from '@mui/icons-material/Check'
 import DeleteIcon from '@mui/icons-material/Delete'
 
 import styles from './ui/index.module.scss'
-import { deleteTask, patchTaskDone } from '../../pages/Home/model/taskSlice'
+import { deleteTask, patchTaskDone } from '../../app/axiosReqest'
 
 export const TaskCard = ({ item }) => {
 	const dispatch = useDispatch()
 	const [isCompleted, setIsCompleted] = useState(item.completed)
 
 	const toggleCompleted = () => {
-		// Создаем обновленный объект задачи
 		const updatedTask = {
 			...item,
 			completed: !isCompleted,

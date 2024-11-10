@@ -28,6 +28,9 @@
 	text-decoration: none;
 	margin-top: 30px;
 	margin-right: 35px;
+	@media (max-width: 640px) {
+		font-size: 12px;
+	}
 
 	&:hover {
 		background-color: #4361ee;

@@ -14,7 +14,7 @@ export const Header = () => {
 			case '/TaskManager':
 				return '#dde0ab'
 			default:
-				return '#97cba9'
+				return '#f4d799'
 		}
 	}
 

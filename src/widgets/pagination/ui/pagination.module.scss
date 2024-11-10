@@ -1,9 +1,91 @@
-.root {
-	background-color: #97cba9;
+@font-face {
+	font-family: 'Roboto';
+	src: url('/src/app/assets/Roboto/Roboto-Medium.ttf') format('truetype');
+	font-style: normal;
+}
+
+* {
 	margin: 0;
-	:global {
-		.previous {
-			background-color: red;
+}
+
+.root {
+	font-family: 'Roboto', sans-serif;
+	@media (max-width: 640px) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		ul {
+			padding: 0;
 		}
 	}
+	li {
+		display: inline-block;
+		margin: 20px 0px;
+	}
+	a {
+		display: inline-block;
+		text-align: center;
+		line-height: 30px;
+		background-color: #f9f3e5;
+		width: 30px;
+		height: 30px;
+		padding: 10px;
+		margin-right: 10px;
+		border: 3px solid black;
+		border-radius: 37px;
+		cursor: pointer;
+		user-select: none;
+		&:hover {
+			background-color: #ccc;
+		}
+	}
+	:global {
+		.selected {
+			a {
+				background-color: #4361ee;
+			}
+		}
+	}
+}
+
+.titleContainerEnd {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	margin: 0px 100px 0px 100px;
+
+	@media (max-width: 640px) {
+		margin: 0px;
+	}
+
+	.titleEnd {
+		font-size: 20px;
+		font-weight: 400;
+		margin-bottom: 20px;
+	}
+
+	&::before,
+	&::after {
+		content: '';
+		position: relative;
+		flex: 1;
+		height: 1px;
+		background-color: #000000;
+		margin: 0 15px;
+		position: relative;
+		bottom: 10px;
+	}
+}
+
+.homeBackground {
+	background-color: #97cba9;
+}
+
+.taskManagerBackground {
+	background-color: #dde0ab;
+}
+
+.notFoundBackground {
+	background-color: #f4d799;
 }

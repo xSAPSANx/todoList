@@ -1,72 +1,42 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
-
-export const fetchTask = createAsyncThunk('task/fetchTask', async () => {
-	const { data } = await axios.get('http://localhost:3000/task')
-	return data
-})
-
-export const postTask = createAsyncThunk('task/postTask', async updatedData => {
-	const { data } = await axios.post('http://localhost:3000/task', updatedData)
-	return data
-})
-
-export const patchTask = createAsyncThunk('task/patchTask', async updatedData => {
-	const { data } = await axios.patch(`http://localhost:3000/task/${updatedData.id}`, updatedData)
-	return data
-})
-
-export const patchTaskDone = createAsyncThunk('task/patchTaskDone', async updatedData => {
-	const { data } = await axios.patch(`http://localhost:3000/task/${updatedData.id}`, updatedData)
-	return data
-})
-
-export const deleteTask = createAsyncThunk('task/deleteTask', async id => {
-	const { data } = await axios.delete(`http://localhost:3000/task/${id}`)
-	return data
-})
-
-// Фильтрация
-export const filterTaskTitle = createAsyncThunk('task/filterTaskTitle', async text => {
-	const { data } = await axios.get(`http://localhost:3000/task?title_like=${text}`)
-	return data
-})
-
-export const filterTasksState = createAsyncThunk('task/filterTasksState', async state => {
-	const { data } = await axios.get(`http://localhost:3000/task?completed_like=${state}`)
-	return data
-})
-
-export const filterTasksOld = createAsyncThunk('task/filterTasksOld', async () => {
-	const { data } = await axios.get('http://localhost:3000/task?_sort=dateCreate&_order=desc')
-	return data
-})
+import { createSlice } from '@reduxjs/toolkit'
+import {
+	fetchTask,
+	postTask,
+	patchTask,
+	patchTaskDone,
+	deleteTask,
+	filterTaskTitle,
+	filterTasksState,
+	filterTasksOld,
+} from '../../../app/axiosReqest'
 
 const initialState = {
 	taskData: {
 		items: [],
 		status: 'loading',
 	},
-	taskUpdate: {
-		value: 0,
-	},
-	taskClickID: {
-		id: 0,
-	},
+	numPage: 1,
+	totalPages: 1,
+	updateFilter: 0,
+	taskUpdate: 0,
+	stateFilters: 'Сначала новые',
 }
 
 const taskSlice = createSlice({
 	name: 'task',
 	initialState,
 	reducers: {
-		increment(state) {
-			state.taskUpdate.value++
+		checkNumPage(state, action) {
+			state.numPage = action.payload
 		},
-		tabProjectHidden(state, action) {
-			state.ProjectHidden.value = action.payload
+		setTotalPages(state, action) {
+			state.totalPages = action.payload
 		},
-		projectClickID(state, action) {
-			state.projectClickID.id = action.payload
+		UpdateFilter(state) {
+			state.updateFilter++
+		},
+		changeFilters(state, action) {
+			state.stateFilters = action.payload
 		},
 	},
 	extraReducers: builder => {
@@ -88,7 +58,7 @@ const taskSlice = createSlice({
 			})
 			.addCase(postTask.fulfilled, (state, action) => {
 				state.taskData.items.push(action.payload)
-				state.taskUpdate.value++
+				state.taskUpdate++
 				state.taskData.status = 'loaded'
 			})
 			.addCase(postTask.rejected, state => {
@@ -104,7 +74,7 @@ const taskSlice = createSlice({
 				if (index !== -1) {
 					state.taskData.items[index] = action.payload
 				}
-				state.taskUpdate.value++
+				state.taskUpdate++
 				state.taskData.status = 'loaded'
 			})
 			.addCase(patchTask.rejected, state => {
@@ -172,6 +142,6 @@ const taskSlice = createSlice({
 	},
 })
 
-export const { increment, tabProjectHidden, projectClickID } = taskSlice.actions
+export const { checkNumPage, setTotalPages, UpdateFilter, changeFilters } = taskSlice.actions
 
 export const taskReducer = taskSlice.reducer

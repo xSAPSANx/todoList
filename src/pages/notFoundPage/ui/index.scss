@@ -1,5 +1,17 @@
-body {
+@font-face {
+	font-family: 'Roboto';
+	src: url('/src/app/assets/Roboto/Roboto-Medium.ttf') format('truetype');
+	font-style: normal;
+}
+
+.root {
 	background-color: #f4d799;
+	font-family: 'Roboto', sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	width: 100vw;
 }
 .alert {
 	background-color: #f9f3e5;

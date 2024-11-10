@@ -4,11 +4,12 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
+		"type": "module",
 		"dev": "vite",
 		"build": "vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"server": "json-server -w server/db.json"
+		"server": "json-server -w server/db.json "
 	},
 	"dependencies": {
 		"@emotion/react": "^11.13.3",

@@ -1,27 +1,20 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './ui/filterTask.module.scss'
 
-import { filterTaskTitle, fetchTask, filterTasksOld, filterTasksState } from '../../pages/Home/model/taskSlice'
+import { filterTaskTitle, fetchTask } from '../../app/axiosReqest'
+import { changeFilters, UpdateFilter } from '../../pages/Home/model/taskSlice'
 
 export const FilterMenu = () => {
 	const dispatch = useDispatch()
-	const [filter, setFilter] = useState('Сначала новые')
+	const { numPage, stateFilters } = useSelector(state => state.task)
 	const [titleSearch, setTitleSearch] = useState('')
 
 	const handleFilterChange = selectedFilter => {
-		setFilter(selectedFilter)
+		dispatch(changeFilters(selectedFilter))
+		dispatch(UpdateFilter())
 		if (selectedFilter !== 'По заголовку') {
 			setTitleSearch('')
-			if (selectedFilter === 'Сначала новые') {
-				dispatch(fetchTask())
-			} else if (selectedFilter === 'Сначала старые') {
-				dispatch(filterTasksOld())
-			} else if (selectedFilter === 'Выполненные') {
-				dispatch(filterTasksState(true))
-			} else if (selectedFilter === 'Не выполненные') {
-				dispatch(filterTasksState(false))
-			}
 		}
 	}
 
@@ -30,9 +23,9 @@ export const FilterMenu = () => {
 		setTitleSearch(value)
 
 		if (value.trim() === '') {
-			dispatch(fetchTask())
+			dispatch(fetchTask(numPage))
 		} else {
-			dispatch(filterTaskTitle(value))
+			dispatch(filterTaskTitle({ text: value, numPage: numPage }))
 		}
 	}
 
@@ -41,7 +34,7 @@ export const FilterMenu = () => {
 			<span className={styles.filterLabel}>Фильтрация:</span>
 			<div className={styles.filterContainer}>
 				<div className={styles.dropdown}>
-					<button className={styles.filterButton}>{filter}</button>
+					<button className={styles.filterButton}>{stateFilters}</button>
 					<div className={styles.dropdownContent}>
 						<div onClick={() => handleFilterChange('Сначала новые')}>Сначала новые</div>
 						<div onClick={() => handleFilterChange('Сначала старые')}>Сначала старые</div>
@@ -50,7 +43,7 @@ export const FilterMenu = () => {
 						<div onClick={() => handleFilterChange('Не выполненные')}>Не выполненные</div>
 					</div>
 				</div>
-				{filter === 'По заголовку' && (
+				{stateFilters === 'По заголовку' && (
 					<input
 						type='text'
 						className={styles.titleInput}

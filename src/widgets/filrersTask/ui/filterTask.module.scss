@@ -1,4 +1,11 @@
+@font-face {
+	font-family: 'Roboto';
+	src: url('/src/app/assets/Roboto/Roboto-Medium.ttf') format('truetype');
+	font-style: normal;
+}
+
 .filterMenu {
+	font-family: 'Roboto', sans-serif;
 	display: inline-flex;
 	align-items: center;
 	border-radius: 27px;
@@ -6,20 +13,32 @@
 	background-color: #f9f3e5;
 	padding: 10px;
 	box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.25);
-	min-width: 150px;
+	min-width: 260px;
 	margin-bottom: 30px;
-	margin-left: 15px;
+	margin-left: 10px;
+	@media (max-width: 640px) {
+		margin-left: 0;
+		display: flex;
+		flex-direction: column;
+		width: 260px;
+	}
 }
 
 .filterLabel {
 	font-weight: 600;
 	margin-right: 10px;
+	@media (max-width: 640px) {
+		margin-right: 0;
+	}
 }
 
 .filterContainer {
 	display: flex;
 	align-items: center;
 	position: relative;
+	@media (max-width: 640px) {
+		flex-direction: column;
+	}
 }
 
 .dropdown {
